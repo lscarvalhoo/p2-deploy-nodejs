@@ -9,3 +9,49 @@
 .edit.active {
   display: flex;
 }
+
+.text-edit {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+
+#back {
+  font-size: 18px;
+  color: #2D9CDB;
+}
+
+.field-edit {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-edit h1 {
+  margin-top: 24px;
+}
+
+.field-edit input {
+  height: 52px;
+  text-align: center;
+}
+
+.field-input {
+  width: 420px;
+  margin: 4px 0px 10px 49px;
+  border: 1px solid #828282;
+  border-radius: 12px;
+}
+
+.text-edit-bio textarea {
+  width: 420px;
+  height: 100px;
+  margin: 4px 0px 10px 49px;
+  text-align: center;
+}
+
+.edit-button {
+  margin: 20px 0px 0px 49px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2D9CDB;
+}

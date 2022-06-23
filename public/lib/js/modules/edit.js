@@ -1,28 +1,22 @@
-import { addEvent } from "../libraries/method-lib.js";
 import changeContent from "./change-content.js";
 
 export default function initEdit() {
-  const registerArrow = document.querySelector('#register-arrow');
-  const userName = document.querySelector('#edit-userName');
-  const bio = document.querySelector('#edit-bio'); 
-  const phone = document.querySelector('#edit-phone'); 
-  const email = document.querySelector('#edit-email'); 
+  const backButton = document.querySelector('#back');
+  const editButton = document.querySelector('#edit-button');
+  const userName = document.querySelector('#edit-username');
+  const bio = document.querySelector('#edit-bio');
+  const phone = document.querySelector('#edit-phone');
+  const email = document.querySelector('#edit-email');
   const password = document.querySelector('#edit-password');
-  const editButton = document.querySelector('.button-edit');
 
-  let userNameValue = email.value;
-  let bioValue = email.value;
-  let phoneValue = email.value; 
-  let emailValue = email.value;
-  let passwordValue = email.value;
 
   async function editProfile() {
-    const userName = document.formLogin.name.value;
-    const bio = document.formLogin.bio.value;
-    const phone = document.formLogin.phone.value;
-    const email = document.formLogin.email.value;
-    const password = document.formLogin.password.value;
-    const data = { userName, bio, phone, email, password }; 
+    const userName = document.querySelector('#edit-username');
+    const bio = document.querySelector('#edit-bio');
+    const phone = document.querySelector('#edit-phone');
+    const email = document.querySelector('#edit-email');
+    const password = document.querySelector('#edit-password');
+    const data = [userName.value, bio.value, phone.value, email.value, password.value];
 
     const request = await fetch('/updateUser', {
       method: 'POST',
@@ -30,7 +24,7 @@ export default function initEdit() {
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
-    });  
+    });
   }
 
   email.addEventListener('focus', () => {
@@ -66,7 +60,7 @@ export default function initEdit() {
   });
   bio.addEventListener('blur', () => {
     if (bio.value === '')
-    bio.value = bioNameValue;
+      bio.value = bioNameValue;
   });
 
   phone.addEventListener('focus', () => {
@@ -75,13 +69,16 @@ export default function initEdit() {
   });
   phone.addEventListener('blur', () => {
     if (phone.value === '')
-    phone.value = phoneNameValue;
+      phone.value = phoneNameValue;
   });
 
-  addEvent(editButton, editProfile);
-
-  registerArrow.addEventListener('click', (event) => {
+  editButton.addEventListener('click', (event) => {
     event.preventDefault();
-    changeContent('create');
+    editProfile();
+  });
+
+  backButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    changeContent('profile');
   });
 }
