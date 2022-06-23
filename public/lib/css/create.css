@@ -1,0 +1,76 @@
+.create {
+  margin-top: 80px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.create.active {
+  display: flex;
+}
+
+.box-create {
+  width: 480px;
+  height: 640px;
+}
+
+.subtitle {
+  margin: 15px;
+  text-align: start;
+  width: 100%;
+}
+
+.primary-sub {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.second-sub {
+  font-size: 16px;
+}
+
+.button-create {
+  border: none;
+  display: inline-block;
+  border-radius: 8px;
+  background: #2F80ED;
+  color: #FFFF;
+  padding: 7px 0 9px 0;
+  width: 100%;
+}
+
+.sub-profiles {
+  margin: 31px 0 22px 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.has-member {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 27px;
+  font-size: 14px;
+}
+
+.has-member p {
+  color: #828282;
+  font-weight: 400;
+}
+
+.has-member a {
+  margin-left: 2px;
+  color: #2D9CDB;
+}
+
+.create-footer {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  color: #828282;
+  font-size: 14px;
+}

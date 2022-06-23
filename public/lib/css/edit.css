@@ -1,0 +1,11 @@
+.edit {
+  margin-top: 80px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit.active {
+  display: flex;
+}
