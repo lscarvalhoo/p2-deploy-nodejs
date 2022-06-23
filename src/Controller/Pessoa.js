@@ -27,8 +27,7 @@ export async function login(request, response) {
     }
 }
 
-export async function verifyEmail(request, response) {
-    console.log(request)
+export async function verifyEmail(request, response) { 
     let email = request.body.email;
     let isMember;
     openDb().then(db => {
@@ -71,8 +70,7 @@ export async function createUser(request, response) {
 
 export async function updateUser(request, response) {
     let pessoa = request.body;
-    let email = pessoa.email;
-    console.log(pessoa)
+    let email = pessoa.email; 
     let token = jwt.sign({
         email
     }, 'KEY',
