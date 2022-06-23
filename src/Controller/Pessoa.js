@@ -10,24 +10,31 @@ export async function createTable() {
 export async function login(request, response) {
     let email = request.body.email;
     let password = request.body.password;
-    let token = jwt.sign({ email }, 'KEY',
-        {
-            expiresIn: "1h"
+    let logged;
+    let token = jwt.sign({ email }, 'KEY', { expiresIn: "1h" })
+    openDb().then(db => {
+        db.get('SELECT * FROM Pessoa WHERE email = ? AND password = ?', email, password)
+            .then(pessoa => {
+                console.log(pessoa)
+                if (pessoa !== undefined) {
+                    logged = true;
+                    response.json({
+                        pessoa, token, logged
+                    })
+            } else {
+            response.json({
+                logged: false
+            })
+        }
+    }).catch(() => {
+        response.json({
+            logged: false
         })
-    try {
-        openDb().then(db => {
-            db.get('SELECT * FROM Pessoa WHERE email = ? AND password = ?', email, password)
-                .then(pessoa => response.json({
-                    pessoa, token
-                }));
-        });
-    }
-    catch {
-        return "ERRO!"
-    }
+    });
+}); 
 }
 
-export async function verifyEmail(request, response) { 
+export async function verifyEmail(request, response) {
     let email = request.body.email;
     let isMember;
     openDb().then(db => {
@@ -70,7 +77,8 @@ export async function createUser(request, response) {
 
 export async function updateUser(request, response) {
     let pessoa = request.body;
-    let email = pessoa.email; 
+    verifyFields();
+
     let token = jwt.sign({
         email
     }, 'KEY',
@@ -87,4 +95,12 @@ export async function updateUser(request, response) {
         "message": "Usuario Alterado com Sucesso !",
         token
     })
+
+    function verifyFields() {
+        if (pessoa.name === null || pessoa.bio === null || pessoa.phone === null || pessoa.email === null || pessoa.password === null) {
+            response.json({
+                message: "Necessario preencher todos os campos"
+            });
+        }
+    }
 } 

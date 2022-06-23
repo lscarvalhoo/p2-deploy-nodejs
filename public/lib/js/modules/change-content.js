@@ -1,6 +1,5 @@
 export default function initChangeContent(sectionName) {
-  const content = document.querySelector('.content');
-  const sections = content.querySelectorAll('section');
+  const sections = document.querySelectorAll('section');
 
   sections.forEach((section) => {
     if (section.classList.contains('active')) {

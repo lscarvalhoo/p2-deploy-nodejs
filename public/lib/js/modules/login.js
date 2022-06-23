@@ -1,5 +1,6 @@
 import { addEvent } from "../libraries/method-lib.js";
 import changeContent from "./change-content.js";
+import initProfile from "./profile.js";
 
 export default function initLogin() {
   const registerArrow = document.querySelector('#register-arrow');
@@ -12,7 +13,7 @@ export default function initLogin() {
   async function login() {
     const email = document.formLogin.email.value;
     const password = document.formLogin.password.value;
-    const data = { email, password }; 
+    const data = { email, password };
 
     const request = await fetch('/login', {
       method: 'POST',
@@ -21,15 +22,18 @@ export default function initLogin() {
         'Content-Type': 'application/json',
       }),
     });
-    console.log(request)
-
-    if (request.ok) {
-      const requestJson = await request.json();
+    const requestJson = await request.json();
+    console.log(requestJson)
+    if (requestJson.logged) {
       localStorage.token = requestJson.token;
+      localStorage.userName = requestJson.pessoa.name;
+
+      console.log(requestJson)
       changeContent('profile');
+      initProfile();
     } else {
       alert('E-mail or password incorrect, please try again');
-    }
+    };
   }
 
   email.addEventListener('focus', () => {

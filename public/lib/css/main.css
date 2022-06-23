@@ -8,6 +8,36 @@
   color: #333333;
 }
 
+.header { 
+  margin: 1px;
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  top:0;
+}
+
+.header.active { 
+  display: flex;
+}
+
+.header img {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.header legend {
+  font-size: 14px;
+}
+
+.title-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 28px 0px 0px 72px;
+}
+
 .content {
   display: flex;
   justify-content: center;

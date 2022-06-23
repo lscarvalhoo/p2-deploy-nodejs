@@ -5,7 +5,7 @@ const router = Router();
 
 router.post('/login', login);
 router.post('/createUser', createUser); 
-router.put('/updateUser', updateUser);  
+router.post('/updateUser', updateUser);  
 router.post('/verifyEmail', verifyEmail); 
 
 export default router;
